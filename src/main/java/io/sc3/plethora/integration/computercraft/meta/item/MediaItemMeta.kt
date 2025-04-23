@@ -1,12 +1,16 @@
 package io.sc3.plethora.integration.computercraft.meta.item
 
-import dan200.computercraft.impl.MediaProviders
+import dan200.computercraft.api.media.IMedia
+import dan200.computercraft.api.media.MediaLookup
+import dan200.computercraft.api.media.MediaProvider
+import dan200.computercraft.shared.media.items.RecordMedia
 import io.sc3.plethora.api.meta.BasicMetaProvider
 import net.minecraft.item.ItemStack
 
 class MediaItemMeta : BasicMetaProvider<ItemStack>() {
   override fun getMeta(target: ItemStack): Map<String, *> {
-    val media = MediaProviders.get(target) ?: return emptyMap<String, Any>()
+
+    val media = if(target.item is IMedia) target.item as IMedia else RecordMedia.INSTANCE
 
     return mapOf(
       "media" to mapOf(
