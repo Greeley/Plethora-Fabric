@@ -1,5 +1,6 @@
 import net.darkhax.curseforgegradle.TaskPublishCurseForge
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
 
 plugins {
   val kotlinVersion: String by System.getProperties()
@@ -46,11 +47,11 @@ val archivesBaseName = "plethora"
 version = modVersion
 group = mavenGroup
 
-tasks.withType<KotlinCompile>().configureEach {
-  kotlinOptions {
-    jvmTarget = "17"
-    apiVersion = "1.9"
-    languageVersion = "1.9"
+kotlin {
+  compilerOptions {
+    jvmTarget = JvmTarget.JVM_17
+    apiVersion = KotlinVersion.KOTLIN_1_9
+    languageVersion = KotlinVersion.KOTLIN_1_9
   }
 }
 
@@ -282,4 +283,3 @@ publishing {
     }
   }
 }
-

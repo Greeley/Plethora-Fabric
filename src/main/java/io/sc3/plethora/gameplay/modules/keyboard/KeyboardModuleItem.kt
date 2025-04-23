@@ -1,7 +1,6 @@
 package io.sc3.plethora.gameplay.modules.keyboard
 
 import dan200.computercraft.shared.computer.blocks.AbstractComputerBlockEntity
-import dan200.computercraft.shared.computer.core.ComputerFamily
 import dan200.computercraft.shared.network.container.ComputerContainerData
 import dan200.computercraft.shared.platform.PlatformHelper
 import io.sc3.library.ext.event
