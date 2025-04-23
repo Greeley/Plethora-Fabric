@@ -120,7 +120,7 @@ class KeyboardModuleItem(settings: Settings) : ModuleItem("keyboard", settings) 
 
 
 
-      if (!blockEntity.isUsable(player)) {
+      if (!blockEntity.family.checkUsable(player)) {
         return false
       }
 
