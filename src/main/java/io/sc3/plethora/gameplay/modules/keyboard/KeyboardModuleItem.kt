@@ -1,7 +1,7 @@
 package io.sc3.plethora.gameplay.modules.keyboard
 
 import dan200.computercraft.shared.computer.blocks.AbstractComputerBlockEntity
-import dan200.computercraft.shared.computer.blocks.CommandComputerBlockEntity
+import dan200.computercraft.shared.computer.core.ComputerFamily
 import dan200.computercraft.shared.network.container.ComputerContainerData
 import dan200.computercraft.shared.platform.PlatformHelper
 import io.sc3.library.ext.event
@@ -68,9 +68,9 @@ class KeyboardModuleItem(settings: Settings) : ModuleItem("keyboard", settings) 
     // Check if the user has permission to use a keyboard here
     if (!canUseKeyboard(world, player, pos, blockEntity)) return PASS
 
-    ComputerContainerData(computer, stack).open(
-      player,
-      KeyboardScreenHandlerFactory(computer, stack.name, this, hand)
+    PlatformHelper.get().openMenu(player, blockEntity.name,
+      KeyboardScreenHandlerFactory(computer, stack.name, this, hand),
+      ComputerContainerData(computer, stack)
     )
 
     return CONSUME // Don't play an animation
@@ -118,7 +118,10 @@ class KeyboardModuleItem(settings: Settings) : ModuleItem("keyboard", settings) 
       // BlockEntityHelpers.isUsable: the base usable check
       // AbstractComputerBlockEntity: lootable locked check, BEH.isUsable
       // CommandComputerBlockEntity:  isCommandUsable, AbstractComputerBlockEntity.isUsable
-      if (blockEntity is CommandComputerBlockEntity && !CommandComputerBlockEntity.isCommandUsable(player)) {
+
+
+
+      if (blockEntity.family == ComputerFamily.COMMAND && !blockEntity.serverComputer?.level?.server?.areCommandBlocksEnabled()!!) {
         return false
       }
 
