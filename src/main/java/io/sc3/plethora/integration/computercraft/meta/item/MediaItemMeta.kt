@@ -10,7 +10,7 @@ import net.minecraft.item.ItemStack
 class MediaItemMeta : BasicMetaProvider<ItemStack>() {
   override fun getMeta(target: ItemStack): Map<String, *> {
 
-    val media = if(target.item is IMedia) target.item as IMedia else RecordMedia.INSTANCE
+    val media = MediaLookup.get().find(target, null)
 
     return mapOf(
       "media" to mapOf(
