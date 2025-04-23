@@ -10,7 +10,7 @@ import net.minecraft.item.ItemStack
 class MediaItemMeta : BasicMetaProvider<ItemStack>() {
   override fun getMeta(target: ItemStack): Map<String, *> {
 
-    val media = MediaLookup.get().find(target, null)
+    val media = MediaLookup.get().find(target, null)  ?: return emptyMap<String, String>();
 
     return mapOf(
       "media" to mapOf(
