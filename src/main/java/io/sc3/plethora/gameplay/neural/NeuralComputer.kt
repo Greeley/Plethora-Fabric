@@ -26,7 +26,7 @@ class NeuralComputer(
   pos: BlockPos,
   computerId: Int,
   label: String?
-) : ServerComputer(world, pos, properties(computerId, ADVANCED).terminalSize(WIDTH, HEIGHT)) {
+) : ServerComputer(world, pos, properties(computerId, ADVANCED).label(label).terminalSize(WIDTH, HEIGHT)) {
   var entity: WeakReference<LivingEntity>? = null
     private set
 
