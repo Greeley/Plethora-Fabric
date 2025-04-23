@@ -121,7 +121,7 @@ class KeyboardModuleItem(settings: Settings) : ModuleItem("keyboard", settings) 
 
 
 
-      if (blockEntity.family == ComputerFamily.COMMAND && !blockEntity.serverComputer?.level?.server?.areCommandBlocksEnabled()!!) {
+      if (!blockEntity.isUsable(player)) {
         return false
       }
 
